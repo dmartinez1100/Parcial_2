@@ -57,3 +57,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.casilla-selected{
+  background-color: black;
+}
