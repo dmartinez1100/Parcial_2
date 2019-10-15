@@ -26,7 +26,7 @@ function makeRows(rows, cols) {
         w++;
 
         let cell = document.createElement("div");
-        cell.innerText = filas[r] + columnas[l];
+        //cell.innerText = filas[r] + columnas[l];
         cell.setAttribute("id", filas[r] + columnas[l])
         cell.setAttribute("ondrop", "drop(event)")
         cell.setAttribute("ondragenter", "dragEnter(event)")
@@ -61,21 +61,33 @@ function makeRows(rows, cols) {
                     while(j.row > 0){
                         j = {row:j.row-1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1){
                         j = {row:j.row+1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column > 1){
                         j = {row:j.row,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column < cols){
                         j = {row:j.row,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -101,7 +113,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -161,7 +176,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -183,21 +201,33 @@ function makeRows(rows, cols) {
                     while(j.row > 0 & j.column >1){
                         j = {row:j.row-1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column < cols){
                         j = {row:j.row+1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column > 1){
                         j = {row:j.row+1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column < cols){
                         j = {row:j.row-1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -223,7 +253,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -285,7 +318,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -307,41 +343,65 @@ function makeRows(rows, cols) {
                     while(j.row > 0){
                         j = {row:j.row-1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1){
                         j = {row:j.row+1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column > 1){
                         j = {row:j.row,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column < cols){
                         j = {row:j.row,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column >1){
                         j = {row:j.row-1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column < cols){
                         j = {row:j.row+1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column > 1){
                         j = {row:j.row+1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column < cols){
                         j = {row:j.row-1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -367,7 +427,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -400,7 +463,7 @@ function makeRows(rows, cols) {
                 //    j = {row:j.row,column:j.column-1};
                 //    movimientos.push({row:filas[j.row],column:j.column})
                 //}
-                j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
+                if(j.column==2){movimientos.push({row:filas[j.row],column:j.column+2})}
                 if(j.column < cols){
                     j = {row:j.row,column:j.column+1};
                     movimientos.push({row:filas[j.row],column:j.column})
@@ -418,15 +481,17 @@ function makeRows(rows, cols) {
                     let diag1 = -1;
                     let diag2 = -1;
 
-                    if(row2num(movimientos[i].row)-1 >= 0){
-                        diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
-                        if(typeof diag1.piece!='number'){
-                            possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
-                    }
-                    if(row2num(movimientos[i].row)+1 < cols){
-                        diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
-                        if(typeof diag2.piece!='number'){
-                            possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                    if(this.box.coordinate.column!=2){
+                        if(row2num(movimientos[i].row)-1 >= 0){
+                            diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
+                            if(typeof diag1.piece!='number'){
+                                possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
+                        }
+                        if(row2num(movimientos[i].row)+1 < cols){
+                            diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                            if(typeof diag2.piece!='number'){
+                                possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                        }
                     }
                     if(typeof aux.piece == 'number'){
                         possib.push({row:movimientos[i].row,column:movimientos[i].column})
@@ -440,7 +505,10 @@ function makeRows(rows, cols) {
                 let row_trg = row2num(target[0]);
                 let col_trg = (parseInt(target[1],10)-1);
                 box_trg = chessboard.boxes[row_trg][col_trg];
-                if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                if(typeof box_trg.piece !="number"){
+                    document.getElementById("mensajes").innerHTML = "White "+box_trg.piece.name+" on "+ target+" have been eaten";
+                    box_trg.delete();
+                }
                 box_trg.piece = chessboard.boxes[row_source][col_src].piece
                 box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                 chessboard.boxes[row_source][col_src].piece = NaN;
@@ -466,6 +534,7 @@ function makeRows(rows, cols) {
                 //console.log(this.box.coordinate);
                 let movimientos = new Array();
                 let j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
+                if(j.column==7){movimientos.push({row:filas[j.row],column:j.column-2})}
                 if(j.column > 1){
                     j = {row:j.row,column:j.column-1};
                     movimientos.push({row:filas[j.row],column:j.column})
@@ -489,16 +558,17 @@ function makeRows(rows, cols) {
                     let aux = chessboard.boxes[row2num(movimientos[i].row)][(movimientos[i].column)-1];
                     let diag1 = -1;
                     let diag2 = -1;
-
-                    if(row2num(movimientos[i].row)-1 >= 0){
-                        diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
-                        if(typeof diag1.piece!='number'){
-                            possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
-                    }
-                    if(row2num(movimientos[i].row)+1 < cols){
-                        diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
-                        if(typeof diag2.piece!='number'){
-                            possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                    if(this.box.coordinate.column!=7){
+                        if(row2num(movimientos[i].row)-1 >= 0){
+                            diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
+                            if(typeof diag1.piece!='number'){
+                                possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
+                        }
+                        if(row2num(movimientos[i].row)+1 < cols){
+                            diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                            if(typeof diag2.piece!='number'){
+                                possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                        }
                     }
                     if(typeof aux.piece == 'number'){
                         possib.push({row:movimientos[i].row,column:movimientos[i].column})
@@ -512,7 +582,10 @@ function makeRows(rows, cols) {
                 let row_trg = row2num(target[0]);
                 let col_trg = (parseInt(target[1],10)-1);
                 box_trg = chessboard.boxes[row_trg][col_trg];
-                if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                if(typeof box_trg.piece !="number"){
+                    document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                    box_trg.delete();
+                }
                 box_trg.piece = chessboard.boxes[row_source][col_src].piece
                 box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                 chessboard.boxes[row_source][col_src].piece = NaN;
@@ -541,21 +614,33 @@ function makeRows(rows, cols) {
                     while(j.row > 0){
                         j = {row:j.row-1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1){
                         j = {row:j.row+1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column > 1){
                         j = {row:j.row,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column < cols){
                         j = {row:j.row,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -581,7 +666,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -640,7 +728,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -662,21 +753,33 @@ function makeRows(rows, cols) {
                     while(j.row > 0 & j.column >1){
                         j = {row:j.row-1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column < cols){
                         j = {row:j.row+1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column > 1){
                         j = {row:j.row+1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column < cols){
                         j = {row:j.row-1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -702,7 +805,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -764,7 +870,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -786,41 +895,65 @@ function makeRows(rows, cols) {
                     while(j.row > 0){
                         j = {row:j.row-1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1){
                         j = {row:j.row+1,column:j.column};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column > 1){
                         j = {row:j.row,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.column < cols){
                         j = {row:j.row,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column >1){
                         j = {row:j.row-1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column < cols){
                         j = {row:j.row+1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row < rows-1 & j.column > 1){
                         j = {row:j.row+1,column:j.column-1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     while(j.row > 0 & j.column < cols){
                         j = {row:j.row-1,column:j.column+1};
                         movimientos.push({row:filas[j.row],column:j.column})
+                        if(typeof chessboard.boxes[j.row][j.column-1].piece !='number'){
+                            break;
+                        }
                     }
                     return movimientos;
                 },
@@ -846,7 +979,10 @@ function makeRows(rows, cols) {
                     let row_trg = row2num(target[0]);
                     let col_trg = (parseInt(target[1],10)-1);
                     box_trg = chessboard.boxes[row_trg][col_trg];
-                    if(typeof box_trg.piece !="number"){document.getElementById("mensajes").innerHTML ="Piece on "+ target+" have been eaten";box_trg.delete()}
+                    if(typeof box_trg.piece !="number"){
+                        document.getElementById("mensajes").innerHTML = "Black "+box_trg.piece.name+" on "+ target+" have been eaten";
+                        box_trg.delete();
+                    }
                     box_trg.piece = chessboard.boxes[row_source][col_src].piece
                     box_trg.piece.box.coordinate = {row:target[0],column:parseInt(target[1],10)};
                     chessboard.boxes[row_source][col_src].piece = NaN;
@@ -874,7 +1010,7 @@ function makeRows(rows, cols) {
 };
 
 makeRows(8, 8);
-console.log(chessboard)
+//console.log(chessboard)
 var source = new Object();
 
 function dragStart(event) {
@@ -887,21 +1023,24 @@ function dragEnter(event) {
     let posibilidades = chessboard.boxes[row2num(source[0])][source[1]-1].piece.possibilites();
     //console.log(posibilidades);
     let target1 = event.target.id
-    //console.log("vengo de " + source);
+    target1 = target1[0]+target1[1]
+    console.log("voy a " + target1);
     for(let i = 0;i<posibilidades.length;i++){
         if(posibilidades[i].row+posibilidades[i].column === target1){
             document.getElementById(target1).className += " droptarget";
         }
     }
-    if ( event.target.className.search("droptarget") != -1) {
-        event.target.style.border = "3px dotted red";
+    if ( document.getElementById(target1).className.search("droptarget") != -1) {
+        document.getElementById(target1).style.border = "3px dotted red";
     }
 }
 
 function dragLeave(event) {
-    if ( event.target.className.search("droptarget") != -1) {
-        event.target.style.border = "";
-        document.getElementById(event.target.id).className = document.getElementById(event.target.id).className.replace(" droptarget",'');
+    let target1 = event.target.id
+    target1 = target1[0]+target1[1]
+    if ( document.getElementById(target1).className.search("droptarget") != -1) {
+        document.getElementById(target1).style.border = "";
+        document.getElementById(target1).className = document.getElementById(target1).className.replace(" droptarget",'');
     }
 }
 
@@ -913,22 +1052,20 @@ function drop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("Text");
     var sale = document.getElementById(data);
-    //console.log(event.target.id)
-    if ( event.target.className.search("droptarget") != -1){
+    let target1 = event.target.id
+    target1 = target1[0]+target1[1]
+    if ( document.getElementById(target1).className.search("droptarget") != -1){
         //console.log(event.target)
         document.getElementById("mensajes").innerHTML = "";
-        sale.setAttribute("id",event.target.id+"img");
-        event.target.appendChild(sale);
-        document.getElementById(event.target.id).className = document.getElementById(event.target.id).className.replace(" droptarget",'');
-        event.target.style.border = "";
-        console.log("Moved from "+data[0]+data[1]+" to "+event.target.id)
-        document.getElementById("mensajes").innerHTML = "Moved from "+data[0]+data[1]+" to "+event.target.id;
-        chessboard.boxes[row2num(source[0])][source[1]-1].piece.move(event.target.id);
+        sale.setAttribute("id",target1+"img");
+        document.getElementById(target1).appendChild(sale);
+        document.getElementById(target1).className = document.getElementById(target1).className.replace(" droptarget",'');
+        document.getElementById(target1).style.border = "";
+        document.getElementById("mensajes").innerHTML = "Moved from "+data[0]+data[1]+" to "+target1;
+        chessboard.boxes[row2num(source[0])][source[1]-1].piece.move(target1);
 
         chessboard.turn = chessboard.turn==="white"?"black":"white";
         document.getElementById("turno").innerHTML = "Turn: "+ chessboard.turn;
-        console.log(chessboard);
-
     }
     else{
         document.getElementById("mensajes").innerHTML = "Not  Valid Movement";
