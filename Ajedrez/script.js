@@ -1024,7 +1024,7 @@ function dragEnter(event) {
     //console.log(posibilidades);
     let target1 = event.target.id
     target1 = target1[0]+target1[1]
-    console.log("voy a " + target1);
+    //console.log("voy a " + target1);
     for(let i = 0;i<posibilidades.length;i++){
         if(posibilidades[i].row+posibilidades[i].column === target1){
             document.getElementById(target1).className += " droptarget";
