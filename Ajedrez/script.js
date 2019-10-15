@@ -76,6 +76,19 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="white")
+                           possib.push(box.coordinate)
+                    }
+                    console.log(movimientos);
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -91,11 +104,11 @@ function makeRows(rows, cols) {
                     let j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     if(j.row+2 < rows){
                         if(j.column < cols){movimientos.push({row:filas[j.row+2],column:j.column+1})}
-                        if(j.column > 0){movimientos.push({row:filas[j.row+2],column:j.column-1})}
+                        if(j.column > 1){movimientos.push({row:filas[j.row+2],column:j.column-1})}
                     }
                     if(j.row-2 >= 0){
                         if(j.column < cols){movimientos.push({row:filas[j.row-2],column:j.column+1})}
-                        if(j.column > 0){movimientos.push({row:filas[j.row-2],column:j.column-1})}
+                        if(j.column > 1){movimientos.push({row:filas[j.row-2],column:j.column-1})}
                     }
                     if(j.column+2 < cols+1){
                         if(j.row < rows){movimientos.push({row:filas[j.row+1],column:j.column+2})}
@@ -106,6 +119,20 @@ function makeRows(rows, cols) {
                         if(j.row > 0){movimientos.push({row:filas[j.row-1],column:j.column-2})}
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="white")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -139,6 +166,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="white")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -172,6 +213,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="white")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -225,6 +280,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="white")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -257,6 +326,20 @@ function makeRows(rows, cols) {
                     movimientos.push({row:filas[j.row],column:j.column})
                 }
                 return movimientos;
+            },
+            possibilites:function(){
+                let movimientos = this.movement();
+                let possib = [];
+                console.log(movimientos);
+                for(let y=0;y<movimientos.length;y++){
+                    box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                    //console.log(box)
+                    if(typeof box.piece == 'number')
+                        possib.push(box.coordinate)
+                    else if(box.piece.color==="white")
+                       possib.push(box.coordinate)
+                }
+                return possib;
             }
             };
             Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -287,6 +370,20 @@ function makeRows(rows, cols) {
                     movimientos.push({row:filas[j.row],column:j.column})
                 }
                 return movimientos;
+            },
+            possibilites:function(){
+                let movimientos = this.movement();
+                let possib = [];
+                console.log(movimientos);
+                for(let y=0;y<movimientos.length;y++){
+                    box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                    //console.log(box)
+                    if(typeof box.piece == 'number')
+                        possib.push(box.coordinate)
+                    else if(box.piece.color==="black")
+                       possib.push(box.coordinate)
+                }
+                return possib;
             }
             };
             Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -327,6 +424,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="black")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -342,11 +453,11 @@ function makeRows(rows, cols) {
                     let j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     if(j.row+2 < rows){
                         if(j.column < cols){movimientos.push({row:filas[j.row+2],column:j.column+1})}
-                        if(j.column > 0){movimientos.push({row:filas[j.row+2],column:j.column-1})}
+                        if(j.column > 1){movimientos.push({row:filas[j.row+2],column:j.column-1})}
                     }
                     if(j.row-2 >= 0){
                         if(j.column < cols){movimientos.push({row:filas[j.row-2],column:j.column+1})}
-                        if(j.column > 0){movimientos.push({row:filas[j.row-2],column:j.column-1})}
+                        if(j.column > 1){movimientos.push({row:filas[j.row-2],column:j.column-1})}
                     }
                     if(j.column+2 < cols+1){
                         if(j.row < rows){movimientos.push({row:filas[j.row+1],column:j.column+2})}
@@ -357,6 +468,20 @@ function makeRows(rows, cols) {
                         if(j.row > 0){movimientos.push({row:filas[j.row-1],column:j.column-2})}
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="black")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -390,6 +515,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="black")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -423,6 +562,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        //console.log(box)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="black")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -476,6 +629,20 @@ function makeRows(rows, cols) {
                         movimientos.push({row:filas[j.row],column:j.column})
                     }
                     return movimientos;
+                },
+                possibilites:function(){
+                    let movimientos = this.movement();
+                    let possib = [];
+                    console.log(movimientos);
+                    for(let y=0;y<movimientos.length;y++){
+                        box = chessboard.boxes[row2num(movimientos[y].row)][movimientos[y].column-1];
+                        console.log(box.coordinate.row)
+                        if(typeof box.piece == 'number')
+                            possib.push(box.coordinate)
+                        else if(box.piece.color==="black")
+                           possib.push(box.coordinate)
+                    }
+                    return possib;
                 }
                 };
                 Object.defineProperty(piece,"color",{configurable:false,writable:false});
@@ -537,5 +704,5 @@ function drop(event) {
 
 chessboard.boxes[4][1].piece.box.coordinate.row='A';
 chessboard.boxes[4][1].piece.box.coordinate.column=2;
-console.log(chessboard.boxes[4][7].piece.movement());
+console.log(chessboard.boxes[0][7].piece.possibilites());
 //console.log(array1.findIndex((var1)=>{return var1===5}));
