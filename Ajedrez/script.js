@@ -117,7 +117,7 @@ function makeRows(rows, cols) {
                 //Caballo
                 let piece = {active: 1,enabled:0,box:chessboard.boxes[r][l],color:"black",name:"knight",
                 movement: function(){
-                    console.log(this.box.coordinate);
+                    //console.log(this.box.coordinate);
                     var movimientos = new Array();
                     let j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     
@@ -126,7 +126,6 @@ function makeRows(rows, cols) {
                         if(j.column > 1){movimientos.push({row:filas[j.row+2],column:j.column-1})}
                     }
                     if(j.row-2 >= 0){
-                        console.log(j.column)
                         if(j.column < cols){movimientos.push({row:filas[j.row-2],column:j.column+1})}
                         if(j.column > 1){movimientos.push({row:filas[j.row-2],column:j.column-1})}
                     }
@@ -416,15 +415,22 @@ function makeRows(rows, cols) {
                 //console.log(movimientos);
                 for(let i=0;i<movimientos.length;i++){
                     let aux = chessboard.boxes[row2num(movimientos[i].row)][(movimientos[i].column)-1];
-                    let diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
-                    let diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                    let diag1 = -1;
+                    let diag2 = -1;
+
+                    if(row2num(movimientos[i].row)-1 >= 0){
+                        diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
+                        if(typeof diag1.piece!='number'){
+                            possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
+                    }
+                    if(row2num(movimientos[i].row)+1 < cols){
+                        diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                        if(typeof diag2.piece!='number'){
+                            possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                    }
                     if(typeof aux.piece == 'number'){
                         possib.push({row:movimientos[i].row,column:movimientos[i].column})
                         }
-                    if(typeof diag1.piece!='number'){
-                        possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
-                    if(typeof diag2.piece!='number'){
-                        possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
                 }
                 return possib;
             },
@@ -481,15 +487,22 @@ function makeRows(rows, cols) {
                 //console.log(movimientos);
                 for(let i=0;i<movimientos.length;i++){
                     let aux = chessboard.boxes[row2num(movimientos[i].row)][(movimientos[i].column)-1];
-                    let diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
-                    let diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                    let diag1 = -1;
+                    let diag2 = -1;
+
+                    if(row2num(movimientos[i].row)-1 >= 0){
+                        diag1 = chessboard.boxes[row2num(movimientos[i].row)-1][(movimientos[i].column)-1];
+                        if(typeof diag1.piece!='number'){
+                            possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
+                    }
+                    if(row2num(movimientos[i].row)+1 < cols){
+                        diag2 = chessboard.boxes[row2num(movimientos[i].row)+1][(movimientos[i].column)-1];
+                        if(typeof diag2.piece!='number'){
+                            possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
+                    }
                     if(typeof aux.piece == 'number'){
                         possib.push({row:movimientos[i].row,column:movimientos[i].column})
                         }
-                    if(typeof diag1.piece!='number'){
-                        possib.push({row:diag1.coordinate.row,column:movimientos[i].column})}
-                    if(typeof diag2.piece!='number'){
-                        possib.push({row:diag2.coordinate.row,column:movimientos[i].column})}
                 }
                 return possib;
             },
@@ -584,7 +597,7 @@ function makeRows(rows, cols) {
                 //Caballo
                 let piece = {active: 1,enabled:0,box:chessboard.boxes[r][l],color:"white",name:"knight",
                 movement: function(){
-                    console.log(this.box.coordinate);
+                    //console.log(this.box.coordinate);
                     var movimientos = new Array();
                     let j = {row:row2num(this.box.coordinate.row),column:this.box.coordinate.column};
                     if(j.row+2 < rows){
@@ -872,7 +885,7 @@ function dragStart(event) {
 function dragEnter(event) {
     // Active esta parte cuándo ficha.posibilidades() esté lista
     let posibilidades = chessboard.boxes[row2num(source[0])][source[1]-1].piece.possibilites();
-    console.log(posibilidades);
+    //console.log(posibilidades);
     let target1 = event.target.id
     //console.log("vengo de " + source);
     for(let i = 0;i<posibilidades.length;i++){
