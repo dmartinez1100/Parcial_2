@@ -60,3 +60,9 @@
 .casilla-selected{
   background-color: black;
 }
+#mensajes{
+  font-size: 50px;
+}
+#turno{
+  font-size: 50px;
+}
